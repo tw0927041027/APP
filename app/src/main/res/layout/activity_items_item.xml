@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="tw.edu.nutc.imac.blockchainfingerprint.ui.items.ItemModel" />
+
+        <variable
+            name="view"
+            type="tw.edu.nutc.imac.blockchainfingerprint.ui.items.ItemsContract.Adapt" />
+    </data>
+
+    <RelativeLayout
+        android:background="@{data.isWhiteBackground?@color/colorWhite:@color/colorList}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="30dp"
+            android:gravity="center"
+            android:text="@{data.storeName}"
+            android:textSize="20sp"
+            tools:marginTop="@{data.position==0? @dimen/items_first_margin_top : @dimen/items_margin_top}" />
+
+        <tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomDialogButton
+            android:id="@+id/button_confirm"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:onClick="@{()->view.onItemClick(data)}"
+            android:text="@{data.isLock? @string/items_unlock:@string/items_change}"
+            android:textColor="@color/colorDuckEggBlue"
+            tools:marginTop="@{data.position==0? @dimen/items_first_button_margin_top : @dimen/items_button_margin_top}"
+            android:textSize="18sp"
+            app:radiusSize="2dp"
+            app:shadowSize="4dp" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="13dp"
+            android:layout_marginStart="18dp"
+            android:background="@color/colorSubTitleGrey" />
+
+    </RelativeLayout>
+</layout>

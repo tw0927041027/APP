@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">BlockChainFingerPrint</string>
+    <string name="store">店家一</string>
+
+    <!-- Login -->
+    <string name="login">登入</string>
+    <string name="register">註冊</string>
+    <string name="hint_confirm">確認</string>
+    <string name="hint_cancel">取消</string>
+    <string name="hint_account">請輸入電子信箱</string>
+    <string name="hint_password">請輸入密碼</string>
+    <string name="fingerprint_not_recognized">驗證錯誤，請再次嘗試</string>
+    <string name="fingerprint_hint">請觸碰感測器</string>
+    <string name="fingerprint_success">驗證成功</string>
+    <string name="error_account">請填寫正確的帳號或密碼</string>
+    <string name="items_title">店家列表</string>
+
+    <string name="items_unlock">解鎖</string>
+    <string name="items_change">轉讓</string>
+
+    <!-- lock -->
+    <string name="lock_title">解鎖帳戶</string>
+    <string name="lock_hint_account">請輸入帳號</string>
+    <string name="lock_hint_password">請輸入密碼</string>
+    <string name="lock_hint_first">請填寫您預解鎖店家的帳戶。</string>
+    <string name="lock_hint_second">請按下確認為您解鎖轉讓點數的功能。</string>
+
+    <!-- point -->
+    <string name="point_title">轉讓點數</string>
+    <string name="point_rate">目前比率&#160;&#160;1：</string>
+    <string name="point_get">預計獲得點數</string>
+    <string name="point_hint">請輸入點數</string>
+    <string name="point_hint_first">請填寫您想轉換的點數數值。</string>
+    <string name="point_hint_second">請按下確認為您轉換點數。</string>
+</resources>

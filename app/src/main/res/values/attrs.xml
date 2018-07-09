@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="common_attrs">
+        <attr name="marginStartY" format="dimension" />
+        <attr name="marginStartX" format="dimension" />
+        <attr name="radiusSize" format="dimension" />
+        <attr name="shadowSize" format="dimension" />
+        <attr name="secondShadowSize" format="dimension" />
+        <attr name="backgroundPaintSize" format="dimension" />
+        <attr name="backgroundPaintColor" format="color" />
+        <attr name="rimPaintColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="DialogBackground">
+        <attr name="marginStartY" />
+        <attr name="marginStartX" />
+        <attr name="radiusSize" />
+        <attr name="shadowSize" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomDialogButton">
+        <attr name="radiusSize" />
+        <attr name="shadowSize" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomEditContainer">
+        <attr name="radiusSize" />
+        <attr name="shadowSize" />
+        <attr name="secondShadowSize" />
+        <attr name="backgroundPaintSize" />
+        <attr name="backgroundPaintColor" />
+        <attr name="rimPaintColor" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundRectBackground">
+        <attr name="radiusSize" />
+        <attr name="shadowSize" />
+    </declare-styleable>
+
+    <declare-styleable name="TitleBarView">
+        <attr name="shadowSize" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="tw.edu.nutc.imac.blockchainfingerprint.ui.login.LoginModel" />
+
+        <variable
+            name="view"
+            type="tw.edu.nutc.imac.blockchainfingerprint.ui.login.LoginContract.View" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorDuckEggBlue">
+
+        <tw.edu.nutc.imac.blockchainfingerprint.util.view.RoundRectBackground
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:background="@color/colorTransparent"
+            android:orientation="vertical"
+            app:radiusSize="4dp"
+            app:shadowSize="6dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/store"
+                android:textColor="@color/colorAccent"
+                android:textSize="22sp" />
+
+            <tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomEditContainer
+                android:id="@+id/container_account"
+                android:layout_width="315dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorTransparent"
+                app:backgroundPaintColor="@color/colorDuckEggBlue"
+                app:backgroundPaintSize="1dp"
+                app:radiusSize="2dp"
+                app:rimPaintColor="@color/colorBrightGray"
+                app:secondShadowSize="6dp"
+                app:shadowSize="4dp">
+
+                <EditText
+                    android:id="@+id/edit_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="6dp"
+                    android:background="@color/colorTransparent"
+                    android:hint="@string/hint_account"
+                    android:inputType="textVisiblePassword"
+                    android:onTextChanged="@{view::onAccountTextChanged}"
+                    android:paddingStart="10dp"
+                    android:text="@={model.account}"
+                    android:textSize="18sp"
+                    app:onFocusChangeListener="@{view.focusChangeListener}" />
+
+            </tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomEditContainer>
+
+            <tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomEditContainer
+                android:id="@+id/container_password"
+                android:layout_width="315dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorTransparent"
+                app:backgroundPaintColor="@color/colorDuckEggBlue"
+                app:backgroundPaintSize="1dp"
+                app:radiusSize="2dp"
+                app:rimPaintColor="@color/colorBrightGray"
+                app:secondShadowSize="6dp"
+                app:shadowSize="4dp">
+
+                <EditText
+                    android:id="@+id/edit_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="6dp"
+                    android:background="@color/colorTransparent"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"
+                    android:onTextChanged="@{view::onPasswordTextChanged}"
+                    android:paddingStart="10dp"
+                    android:text="@={model.password}"
+                    android:textSize="18sp"
+                    app:onFocusChangeListener="@{view.focusChangeListener}" />
+
+            </tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomEditContainer>
+
+            <tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomDialogButton
+                android:id="@+id/button_confirm"
+                android:layout_width="315dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:onClick="@{()->view.onSubmitClicked()}"
+                android:text="@string/hint_confirm"
+                android:textColor="@color/colorDuckEggBlue"
+                android:textSize="18sp"
+                app:radiusSize="2dp"
+                app:shadowSize="4dp" />
+
+            <tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomDialogButton
+                android:layout_width="315dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:onClick="@{()->view.onRegisterClick()}"
+                android:text="@string/register"
+                android:textColor="@color/colorDuckEggBlue"
+                android:textSize="18sp"
+                app:radiusSize="2dp"
+                app:shadowSize="4dp" />
+        </tw.edu.nutc.imac.blockchainfingerprint.util.view.RoundRectBackground>
+    </RelativeLayout>
+</layout>

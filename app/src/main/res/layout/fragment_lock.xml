@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="tw.edu.nutc.imac.blockchainfingerprint.ui.items.lock.LockModel" />
+
+
+        <variable
+            name="view"
+            type="tw.edu.nutc.imac.blockchainfingerprint.ui.items.lock.LockContract.View" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="61.2dp"
+                android:background="@color/colorTransparent">
+
+                <tw.edu.nutc.imac.blockchainfingerprint.util.view.TitleBarView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:shadowSize="6dp" />
+
+                <TextView
+                    style="@style/Title_Text_Unit"
+                    android:text="@string/lock_title"
+                    android:textColor="@color/colorWhite" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="315dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="@{data.storeName}"
+                android:textColor="@color/colorSubTitleGrey"
+                android:textSize="20sp" />
+
+            <tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomEditContainer
+                android:id="@+id/container_account"
+                android:layout_width="315dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorTransparent"
+                app:backgroundPaintColor="@color/colorDuckEggBlue"
+                app:backgroundPaintSize="1dp"
+                app:radiusSize="2dp"
+                app:rimPaintColor="@color/colorBrightGray"
+                app:secondShadowSize="6dp"
+                app:shadowSize="4dp">
+
+                <EditText
+                    android:id="@+id/edit_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="6dp"
+                    android:background="@color/colorTransparent"
+                    android:hint="@string/lock_hint_account"
+                    android:onTextChanged="@{view::onAccountTextChanged}"
+                    android:inputType="textVisiblePassword"
+                    android:paddingStart="10dp"
+                    android:text="@={data.account}"
+                    android:textSize="18sp"
+                    app:onFocusChangeListener="@{view.focusChangeListener}" />
+
+            </tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomEditContainer>
+
+            <tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomEditContainer
+                android:id="@+id/container_password"
+                android:layout_width="315dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorTransparent"
+                app:backgroundPaintColor="@color/colorDuckEggBlue"
+                app:backgroundPaintSize="1dp"
+                app:radiusSize="2dp"
+                app:rimPaintColor="@color/colorBrightGray"
+                app:secondShadowSize="6dp"
+                app:shadowSize="4dp">
+
+                <EditText
+                    android:onTextChanged="@{view::onPasswordTextChanged}"
+                    android:id="@+id/edit_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="6dp"
+                    android:background="@color/colorTransparent"
+                    android:hint="@string/lock_hint_password"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:text="@={data.password}"
+                    android:textSize="18sp"
+                    app:onFocusChangeListener="@{view.focusChangeListener}" />
+
+            </tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomEditContainer>
+
+            <tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomDialogButton
+                android:id="@+id/button_confirm"
+                android:layout_width="315dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:onClick="@{()->view.onSubmitClicked()}"
+                android:text="@string/hint_confirm"
+                android:textColor="@color/colorDuckEggBlue"
+                android:textSize="18sp"
+                app:radiusSize="2dp"
+                app:shadowSize="4dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="80dp"
+                android:background="@color/colorSubTitleGrey" />
+
+            <LinearLayout
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="50dp">
+
+                <TextView
+                    android:id="@+id/check_privacy"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/layout_oval_blue_stroke_background"
+                    android:ems="1"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:paddingStart="8dp"
+                    android:text="@string/lock_hint_first"
+                    android:textColor="@color/colorSubTitleGrey"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/layout_oval_blue_stroke_background"
+                    android:ems="1"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:paddingStart="8dp"
+                    android:text="@string/lock_hint_second"
+                    android:textColor="@color/colorSubTitleGrey"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>
