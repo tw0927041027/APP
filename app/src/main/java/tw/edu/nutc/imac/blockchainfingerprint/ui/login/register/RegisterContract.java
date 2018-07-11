@@ -19,6 +19,8 @@ public interface RegisterContract {
         void onAccountTextChanged(CharSequence s, int start, int before, int count);
 
         void onPasswordTextChanged(CharSequence s, int start, int before, int count);
+
+        void showLoginPage();
     }
 
     interface Presenter extends BasePresenter<View> {

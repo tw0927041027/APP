@@ -4,8 +4,7 @@ import dagger.BindsInstance;
 import dagger.Component;
 import tw.edu.nutc.imac.blockchainfingerprint.data.entity.User;
 import tw.edu.nutc.imac.blockchainfingerprint.di.ApplicationComponent;
-import tw.edu.nutc.imac.blockchainfingerprint.di.FingerprintModule;
-import tw.edu.nutc.imac.blockchainfingerprint.ui.items.ItemsComponent;
+import tw.edu.nutc.imac.blockchainfingerprint.ui.store.StoreComponent;
 
 /**
  * Created by 依杰 on 2018/6/12.
@@ -15,7 +14,7 @@ import tw.edu.nutc.imac.blockchainfingerprint.ui.items.ItemsComponent;
 @UserScope
 public interface UserComponent {
 
-    ItemsComponent.Builder itemsComponentBuilder();
+    StoreComponent.Builder storeComponentBuilder();
 
 
     @Component.Builder

@@ -5,13 +5,13 @@ package tw.edu.nutc.imac.blockchainfingerprint.data.entity;
  */
 
 public class User {
-    private String account;
+    private String token;
 
-    public String getAccount() {
-        return account;
+    public String getToken() {
+        return token;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setToken(String token) {
+        this.token = token;
     }
 }

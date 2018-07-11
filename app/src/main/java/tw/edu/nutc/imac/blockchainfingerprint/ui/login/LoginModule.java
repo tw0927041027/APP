@@ -1,8 +1,5 @@
 package tw.edu.nutc.imac.blockchainfingerprint.ui.login;
 
-import android.app.KeyguardManager;
-import android.hardware.fingerprint.FingerprintManager;
-
 import dagger.Module;
 import dagger.Provides;
 import tw.edu.nutc.imac.blockchainfingerprint.ui.login.register.RegisterContract;
@@ -22,15 +19,5 @@ public class LoginModule {
     @Provides
     public RegisterContract.Presenter provideRegisterContract(RegisterPresenter presenter) {
         return presenter;
-    }
-
-    @Provides
-    public FingerprintManager providesFingerprintManager(LoginActivity activity) {
-        return activity.getSystemService(FingerprintManager.class);
-    }
-
-    @Provides
-    public KeyguardManager providesKeyguardManager(LoginActivity activity) {
-        return activity.getSystemService(KeyguardManager.class);
     }
 }

@@ -20,6 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Subscriber;
+import tw.edu.nutc.imac.blockchainfingerprint.data.network.LoginResult;
 import tw.edu.nutc.imac.blockchainfingerprint.data.network.RemoteSource;
 import tw.edu.nutc.imac.blockchainfingerprint.data.network.Result;
 import tw.edu.nutc.imac.blockchainfingerprint.data.prefs.PreferencesHelper;
@@ -34,7 +35,7 @@ public class RemoteModule {
     @Provides
     @Singleton
     public String provideBaseUrl() {
-        return "http://10.26.1.147:8888/";
+        return "http://10.0.0.59:8080/";
     }
 
     @Provides
@@ -108,7 +109,6 @@ public class RemoteModule {
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS)
-                .hostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
                 .build();
 
         return new okhttp3.Authenticator() {
@@ -124,7 +124,7 @@ public class RemoteModule {
                 retrofit.create(RemoteSource.class).login(
                         preferencesHelper.getAccount(),
                         preferencesHelper.getPassword()).
-                        toBlocking().subscribe(new Subscriber<Result>() {
+                        toBlocking().subscribe(new Subscriber<LoginResult>() {
                     @Override
                     public void onCompleted() {
 
@@ -136,8 +136,7 @@ public class RemoteModule {
                     }
 
                     @Override
-                    public void onNext(Result result) {
-                        preferencesHelper.setToken(result.getToken());
+                    public void onNext(LoginResult result) {
                     }
                 });
                 return response.request().newBuilder()

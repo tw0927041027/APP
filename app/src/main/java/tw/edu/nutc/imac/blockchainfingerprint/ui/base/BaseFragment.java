@@ -30,8 +30,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     private ProgressDialog mProgressDialog;
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         initDagger();
         presenter.onAttach(this);
     }
@@ -54,7 +54,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Override
     public void showLoading() {
         hideLoading();
-//        mProgressDialog = CommonUtils.showLoadingDialog(this.getContext());
+        mProgressDialog = CommonUtils.showLoadingDialog(mActivity);
     }
 
     @Override

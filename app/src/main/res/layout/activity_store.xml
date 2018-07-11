@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="tw.edu.nutc.imac.blockchainfingerprint.ui.store.StoreModel" />
+
+        <variable
+            name="view"
+            type="tw.edu.nutc.imac.blockchainfingerprint.ui.store.StoreContract.View" />
+    </data>
+
+
+    <RelativeLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:background="@color/colorTransparent">
+
+            <tw.edu.nutc.imac.blockchainfingerprint.util.view.TitleBarView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:shadowSize="6dp" />
+
+            <TextView
+                style="@style/Title_Text_Unit"
+                android:text="@string/store_title"
+                android:textColor="@color/colorWhite" />
+
+        </RelativeLayout>
+
+        <tw.edu.nutc.imac.blockchainfingerprint.util.view.RoundRectBackground
+            android:id="@+id/layout_point"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="60dp"
+            android:background="@color/colorTransparent"
+            android:onClick="@{() -> view.onPointClick()}"
+            android:orientation="vertical"
+            app:radiusSize="4dp"
+            app:shadowSize="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="60dp"
+                android:layout_marginTop="60dp"
+                android:text="@string/point_title"
+                android:textColor="@color/colorSubTitleGrey"
+                android:textSize="22sp" />
+        </tw.edu.nutc.imac.blockchainfingerprint.util.view.RoundRectBackground>
+
+        <tw.edu.nutc.imac.blockchainfingerprint.util.view.RoundRectBackground
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_point"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/colorTransparent"
+            android:onClick="@{() -> view.onSettingClick()}"
+            android:orientation="vertical"
+            app:radiusSize="4dp"
+            app:shadowSize="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="60dp"
+                android:layout_marginTop="60dp"
+                android:text="@string/setting_title"
+                android:textColor="@color/colorSubTitleGrey"
+                android:textSize="22sp" />
+        </tw.edu.nutc.imac.blockchainfingerprint.util.view.RoundRectBackground>
+    </RelativeLayout>
+</layout>

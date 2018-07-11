@@ -1,26 +1,20 @@
 package tw.edu.nutc.imac.blockchainfingerprint.ui.login;
 
-import android.app.KeyguardManager;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import javax.inject.Inject;
 
 import tw.edu.nutc.imac.blockchainfingerprint.R;
 import tw.edu.nutc.imac.blockchainfingerprint.databinding.ActivityLoginBinding;
 import tw.edu.nutc.imac.blockchainfingerprint.di.ApplicationComponent;
 import tw.edu.nutc.imac.blockchainfingerprint.ui.base.BaseActivity;
-import tw.edu.nutc.imac.blockchainfingerprint.ui.items.ItemsActivity;
 import tw.edu.nutc.imac.blockchainfingerprint.ui.login.register.RegisterFragment;
+import tw.edu.nutc.imac.blockchainfingerprint.ui.store.StoreActivity;
 import tw.edu.nutc.imac.blockchainfingerprint.util.CommonUtils;
 import tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomEditContainer;
 
@@ -31,12 +25,6 @@ import tw.edu.nutc.imac.blockchainfingerprint.util.view.CustomEditContainer;
 public class LoginActivity extends BaseActivity<LoginContract.Presenter> implements LoginContract.View {
     private LoginComponent loginComponent;
     private ActivityLoginBinding mActivityLoginBinding;
-
-    @Inject
-    KeyguardManager mKeyguardManager;
-
-    @Inject
-    FingerprintManager mFingerprintManager;
 
     private CustomEditContainer mAccountCustomEditContainer;
 
@@ -51,19 +39,6 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
         mActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         super.onCreate(savedInstanceState);
         mActivityLoginBinding.setView(this);
-        if (!mKeyguardManager.isKeyguardSecure()) {
-            Toast.makeText(this,
-                    "Secure lock screen hasn't set up.\n"
-                            + "Go to 'Settings -> Security -> Fingerprint' to set up a fingerprint",
-                    Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (!mFingerprintManager.hasEnrolledFingerprints()) {
-            Toast.makeText(this,
-                    "Go to 'Settings -> Security -> Fingerprint' and register at least one fingerprint",
-                    Toast.LENGTH_LONG).show();
-            return;
-        }
 
         initView();
     }
@@ -119,7 +94,7 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
     public void onAccountTextChanged(CharSequence s, int start, int before, int count) {
         if (CommonUtils.isEmailValid(String.valueOf(s)) || s.length() == 0) {
             mAccountCustomEditContainer.setError(false);
-            mActivityLoginBinding.getModel().setSubmitEnabled(!mPasswordCustomEditContainer.getIsError() && !mAccountCustomEditContainer.getIsError());
+            mActivityLoginBinding.getModel().setSubmitEnabled(!(mActivityLoginBinding.getModel().getPassword() == null) && !mPasswordCustomEditContainer.getIsError() && !mAccountCustomEditContainer.getIsError());
         } else {
             mActivityLoginBinding.getModel().setSubmitEnabled(false);
             mAccountCustomEditContainer.setError(true);
@@ -130,7 +105,7 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
     public void onPasswordTextChanged(CharSequence s, int start, int before, int count) {
         if (s.length() > 5 || s.length() == 0) {
             mPasswordCustomEditContainer.setError(false);
-            mActivityLoginBinding.getModel().setSubmitEnabled(!mPasswordCustomEditContainer.getIsError() && !mAccountCustomEditContainer.getIsError());
+            mActivityLoginBinding.getModel().setSubmitEnabled(!(mActivityLoginBinding.getModel().getAccount() == null) && !mPasswordCustomEditContainer.getIsError() && !mAccountCustomEditContainer.getIsError());
         } else {
             mActivityLoginBinding.getModel().setSubmitEnabled(false);
             mPasswordCustomEditContainer.setError(true);
@@ -139,7 +114,7 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
 
     @Override
     public void showStoreListPage() {
-        Intent intent = new Intent(this, ItemsActivity.class);
+        Intent intent = new Intent(this, StoreActivity.class);
         startActivity(intent);
         finish();
     }

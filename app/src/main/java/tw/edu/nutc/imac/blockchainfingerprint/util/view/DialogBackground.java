@@ -59,7 +59,7 @@ public class DialogBackground extends LinearLayout {
 
     private void init() {
         mBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mBackgroundPaint.setColor(0xc0ffffff);
+        mBackgroundPaint.setColor(0xffffffff);
         mBackgroundPaint.setStyle(Paint.Style.FILL);
 
         mShadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

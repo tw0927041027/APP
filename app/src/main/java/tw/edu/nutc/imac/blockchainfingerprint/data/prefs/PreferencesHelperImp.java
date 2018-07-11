@@ -23,6 +23,8 @@ public class PreferencesHelperImp implements PreferencesHelper {
 
     private final String PREF_KEY_USER_TOKEN = "PREF_KEY_USER_TOKEN";
 
+    private final String PREF_KEY_LOCK = "PREF_KEY_LOCK";
+
     private final SharedPreferences mSharedPreferences;
 
     @Inject
@@ -68,6 +70,16 @@ public class PreferencesHelperImp implements PreferencesHelper {
     @Override
     public String getPassword() {
         return mSharedPreferences.getString(PREF_KEY_USER_PASSWORD, null);
+    }
+
+    @Override
+    public void setIsLock(boolean isLock) {
+        mSharedPreferences.edit().putBoolean(PREF_KEY_LOCK, isLock).apply();
+    }
+
+    @Override
+    public boolean getLock() {
+        return mSharedPreferences.getBoolean(PREF_KEY_LOCK, false);
     }
 
     @Override

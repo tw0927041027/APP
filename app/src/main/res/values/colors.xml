@@ -11,5 +11,5 @@
     <color name="hint_color">#42000000</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorList">#ecf5ff</color>
-
+    <color name="colorDialogBackground">#37414141</color>
 </resources>

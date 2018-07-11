@@ -3,31 +3,33 @@ package tw.edu.nutc.imac.blockchainfingerprint.data.network;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by 依杰 on 2018/7/3.
  */
 
 public class Result {
-    @SerializedName("status")
+    @SerializedName("result")
     @Expose
-    private String status;
-    @SerializedName("token")
+    private Integer result;
+    @SerializedName("message")
     @Expose
-    private String token;
+    private List<String> message = null;
 
-    public String getStatus() {
-        return status;
+    public Integer getResult() {
+        return result;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setResult(Integer result) {
+        this.result = result;
     }
 
-    public String getToken() {
-        return token;
+    public List<String> getMessage() {
+        return message;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setMessage(List<String> message) {
+        this.message = message;
     }
 }

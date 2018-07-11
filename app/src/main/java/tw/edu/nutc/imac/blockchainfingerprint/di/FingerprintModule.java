@@ -16,38 +16,38 @@
 
 package tw.edu.nutc.imac.blockchainfingerprint.di;
 
+import android.app.KeyguardManager;
 import android.content.Context;
-import android.hardware.fingerprint.FingerprintManager;
 import android.security.keystore.KeyProperties;
 import android.view.inputmethod.InputMethodManager;
 
-import java.security.KeyPairGenerator;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
-import java.security.Signature;
+import java.security.UnrecoverableKeyException;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 import dagger.Module;
 import dagger.Provides;
-import tw.edu.nutc.imac.blockchainfingerprint.ui.items.ItemsActivity;
+import tw.edu.nutc.imac.blockchainfingerprint.ui.store.StoreActivity;
 import tw.edu.nutc.imac.blockchainfingerprint.util.store.StoreBackend;
 import tw.edu.nutc.imac.blockchainfingerprint.util.store.StoreBackendImpl;
-
-/**
- * Dagger module for Fingerprint APIs.
- */
 
 @Module
 public class FingerprintModule {
 
     @Provides
-    public FingerprintManager providesFingerprintManager(ItemsActivity activity) {
-        return activity.getSystemService(FingerprintManager.class);
+    public KeyguardManager provideKeyguardManager(StoreActivity activity) {
+        return activity.getSystemService(KeyguardManager.class);
     }
 
     @Provides
-    public KeyStore providesKeystore() {
+    public KeyStore provideKeystore() {
         try {
             return KeyStore.getInstance("AndroidKeyStore");
         } catch (KeyStoreException e) {
@@ -56,30 +56,42 @@ public class FingerprintModule {
     }
 
     @Provides
-    public KeyPairGenerator providesKeyPairGenerator() {
+    public KeyGenerator provideKeyGenerator() {
         try {
-            return KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_EC, "AndroidKeyStore");
+            return KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
         } catch (NoSuchAlgorithmException | NoSuchProviderException e) {
-            throw new RuntimeException("Failed to get an instance of KeyPairGenerator", e);
+            throw new RuntimeException("Failed to get an instance of KeyGenerator", e);
         }
     }
 
     @Provides
-    public Signature providesSignature() {
+    public SecretKey provideSecretKey(KeyStore keyStore) {
         try {
-            return Signature.getInstance("SHA256withECDSA");
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Failed to get an instance of Signature", e);
+            return (SecretKey) keyStore.getKey("Key_Name", null);
+        } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableKeyException e) {
+            throw new RuntimeException("Failed to get an instance of SecretKey", e);
         }
     }
 
     @Provides
-    public InputMethodManager providesInputMethodManager(ItemsActivity context) {
+    public Cipher provideCipher() {
+        try {
+            return Cipher.getInstance(
+                    KeyProperties.KEY_ALGORITHM_AES + "/" + KeyProperties.BLOCK_MODE_CBC + "/"
+                            + KeyProperties.ENCRYPTION_PADDING_PKCS7);
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+            throw new RuntimeException("Failed to get an instance of Cipher", e);
+        }
+    }
+
+    @Provides
+    public InputMethodManager provideInputMethodManager(StoreActivity context) {
         return (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
     }
 
     @Provides
-    public StoreBackend providesStoreBackend() {
+    public StoreBackend provideStoreBackend() {
         return new StoreBackendImpl();
     }
+
 }

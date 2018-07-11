@@ -22,5 +22,9 @@ public interface PreferencesHelper {
 
     String getPassword();
 
+    void setIsLock(boolean isLock);
+
+    boolean getLock();
+
     void clearSharedPreferences();
 }

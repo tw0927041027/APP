@@ -99,6 +99,11 @@ public class RegisterFragment extends BaseFragment<RegisterContract.Presenter> i
     }
 
     @Override
+    public void showLoginPage() {
+        getBaseActivity().onFragmentDetached(null, RegisterFragment.TAG);
+    }
+
+    @Override
     public void onFragmentResume(String tag, Bundle arg) {
 
     }
@@ -106,5 +111,11 @@ public class RegisterFragment extends BaseFragment<RegisterContract.Presenter> i
     @Override
     protected void initDagger() {
         ((LoginActivity) getBaseActivity()).getLoginComponent().inject(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        getPresenter().onDetach();
+        super.onDestroy();
     }
 }

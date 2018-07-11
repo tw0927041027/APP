@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="view"
+            type="tw.edu.nutc.imac.blockchainfingerprint.ui.store.setting.SettingContract.View" />
+
+        <variable
+            name="data"
+            type="tw.edu.nutc.imac.blockchainfingerprint.ui.store.setting.SettingModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        android:focusable="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="115dp">
+
+                <tw.edu.nutc.imac.blockchainfingerprint.util.view.TitleBarView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:shadowSize="6dp" />
+
+                <TextView
+                    style="@style/Title_Text_Unit"
+                    android:gravity="center"
+                    android:text="@string/setting_title"
+                    android:textColor="@color/colorWhite" />
+
+            </RelativeLayout>
+
+            <tw.edu.nutc.imac.blockchainfingerprint.util.view.RoundRectBackground
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="80dp"
+                android:background="@color/colorTransparent"
+                android:orientation="vertical"
+                app:radiusSize="4dp"
+                app:shadowSize="6dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center"
+                    android:text="@string/setting_finger_print"
+                    android:textSize="22sp" />
+
+                <Switch
+                    style="@style/Switch"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="30dp"
+                    android:checked="@={data.isLock}" />
+            </tw.edu.nutc.imac.blockchainfingerprint.util.view.RoundRectBackground>
+
+
+        </RelativeLayout>
+    </ScrollView>
+</layout>
